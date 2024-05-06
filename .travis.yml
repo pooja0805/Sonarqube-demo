@@ -23,5 +23,6 @@ script:
     - sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' $HOME_DIR/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner
     - # Running sonar-scanner
     - cd $HOME_DIR/
-    - $HOME_DIR/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.projectKey=gosec -Dsonar.sources=$HOME_DIR/ -Dsonar.kubernetes.activate=false -Dsonar.login=admin -Dsonar.password=admin
+    - echo $HOME_DIR/ && ls $HOME_DIR/
+    - $HOME_DIR/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.projectKey=gosec -Dsonar.sources=$HOME_DIR/Sonarqube-demo -Dsonar.kubernetes.activate=false -Dsonar.login=admin -Dsonar.password=admin
     - # Verifying
