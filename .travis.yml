@@ -8,19 +8,20 @@ script:
     - sudo apt-get update -y && sudo apt-get install -y wget git unzip tar net-tools xz-utils curl gzip patch locales make gcc g++ openjdk-17-jdk
     - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-ppc64el && export PATH=$JAVA_HOME/bin:$PATH && java -version
     - # Installing Sonarqube
-    - cd $HOME_DIR && wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.4.1.88267.zip 
-    - unzip sonarqube-10.4.1.88267.zip
+    - cd $HOME_DIR && wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.5.1.90531.zip 
+    - unzip sonarqube-10.5.1.90531.zip 
     - # Running SonarQube
     - sudo groupadd sonarqube
     - sudo usermod -aG sonarqube $(whoami)
-    - sudo chown $(whoami):sonarqube -R $HOME_DIR/sonarqube-10.4.1.88267
-    - export PATH=$PATH:$HOME_DIR/sonarqube-10.4.1.88267/bin/linux-x86-64
+    - sudo chown $(whoami):sonarqube -R $HOME_DIR/sonarqube-10.5.1.90531
+    - export PATH=$PATH:$HOME_DIR/sonarqube-10.5.1.90531/bin/linux-x86-64
     - sonar.sh start
     - # Installing sonar-scanner-cli
-    - cd $HOME_DIR && wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006.zip
-    - unzip sonar-scanner-cli-5.0.1.3006.zip
+    - cd $HOME_DIR && wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+    - unzip sonar-scanner-cli-5.0.1.3006-linux.zip
     - # Modify $HOME_DIR/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner to use system JVM.
     - sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' $HOME_DIR/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner
     - # Running sonar-scanner
     - cd $HOME_DIR/
-    - $HOME_DIR/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.projectKey=gosec -Dsonar.sources=. -Dsonar.login=admin -Dsonar.password=admin
+    - $HOME_DIR/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.projectKey=gosec -Dsonar.sources=. -Dsonar.kubernetes.activate=false -Dsonar.login=admin -Dsonar.password=admin
+    - # Verifying
