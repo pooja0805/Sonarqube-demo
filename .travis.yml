@@ -16,7 +16,7 @@ script:
     - sudo chown $(whoami):sonarqube -R $HOME_DIR/sonarqube-10.5.1.90531
     - export PATH=$PATH:$HOME_DIR/sonarqube-10.5.1.90531/bin/linux-x86-64
     - sonar.sh start
-    - curl hhtp://localhost:9000/
+    - curl http://localhost:9000/
     - # Installing sonar-scanner-cli
     - cd $HOME_DIR && wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
     - unzip -q sonar-scanner-cli-5.0.1.3006-linux.zip
