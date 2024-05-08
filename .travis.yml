@@ -9,7 +9,7 @@ script:
     - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-ppc64el && export PATH=$JAVA_HOME/bin:$PATH && java -version
     - # Installing Sonarqube
     - cd $HOME_DIR && wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.5.1.90531.zip 
-    - unzip sonarqube-10.5.1.90531.zip 
+    - unzip -q sonarqube-10.5.1.90531.zip 
     - # Running SonarQube
     - sudo groupadd sonarqube
     - sudo usermod -aG sonarqube $(whoami)
@@ -18,11 +18,10 @@ script:
     - sonar.sh start
     - # Installing sonar-scanner-cli
     - cd $HOME_DIR && wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
-    - unzip sonar-scanner-cli-5.0.1.3006-linux.zip
+    - unzip -q sonar-scanner-cli-5.0.1.3006-linux.zip
     - # Modify $HOME_DIR/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner to use system JVM.
     - sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' $HOME_DIR/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner
     - # Running sonar-scanner
     - cd $HOME_DIR/
-    - echo $HOME_DIR/ && ls $HOME_DIR/
     - $HOME_DIR/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.projectKey=gosec -Dsonar.sources=. -Dsonar.kubernetes.activate=false -Dsonar.login=admin -Dsonar.password=admin
     - # Verifying
