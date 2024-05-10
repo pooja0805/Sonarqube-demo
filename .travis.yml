@@ -16,7 +16,7 @@ script:
     - sudo usermod -aG sonarqube $(whoami)
     - sudo chown $(whoami):sonarqube -R $HOME_DIR/sonarqube-10.5.1.90531
     - export PATH=$PATH:$HOME_DIR/sonarqube-10.5.1.90531/bin/linux-x86-64
-    - sonar.sh start
+    - sonar.sh start && sleep 120s
     - curl http://localhost:9000/
     - # Installing sonar-scanner-cli
     - cd $HOME_DIR && wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
@@ -24,6 +24,6 @@ script:
     - # Modify $HOME_DIR/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner to use system JVM.
     - sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' $HOME_DIR/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner
     - # Running sonar-scanner
-    - cd $HOME_DIR/ && ls $HOME_DIR
+    - cd $HOME_DIR/ && ls -al $HOME_DIR
     - $HOME_DIR/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.projectKey=gosec -Dsonar.sources=. -Dsonar.login=admin -Dsonar.password=admin  -Dsonar.kubernetes.activate=false
     - # Verifying
