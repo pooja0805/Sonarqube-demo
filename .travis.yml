@@ -27,6 +27,6 @@ script:
     - cd $HOME_DIR && wget https://go.dev/dl/go1.22.3.linux-ppc64le.tar.gz && tar -xzf go1.22.3.linux-ppc64le.tar.gz && export PATH=$HOME_DIR/go/bin:$PATH && go version
     - cd $HOME_DIR && NODE_VERSION=20.12.2 && wget https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-ppc64le.tar.gz && tar -xzf node-v$NODE_VERSION-linux-ppc64le.tar.gz && export PATH=$HOME_DIR/node-v$NODE_VERSION-linux-ppc64le/bin:$PATH && node -v
     - # Running sonar-scanner
-    - cd $HOME_DIR/ && ls -al $HOME_DIR
+    - cd $HOME_DIR
     - $HOME_DIR/sonar-scanner-5.0.1.3006-linux/bin/sonar-scanner -Dsonar.projectKey=gosec -Dsonar.sources=. -Dsonar.login=admin -Dsonar.password=admin  -Dsonar.kubernetes.activate=false
     - # Verifying
