@@ -47,4 +47,4 @@ script:
   - ceTaskUrl=$(grep 'ceTaskUrl=' .scannerwork/report-task.txt | sed 's/ceTaskUrl=//')
   - analysisIDToken=$(curl -u "$TOKEN": -X GET "$ceTaskUrl" | grep -o '"analysisId":"[^"]*"' | awk -F'"' '{print $4}')
   - curl -u $TOKEN: -X GET http://localhost:9000/api/issues/search?analysisId="$analysisIDToken" > sonar_report.json
-  - cat sonar_report.json
+  - cat sonar_report.json | jq .
