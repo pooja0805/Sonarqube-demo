@@ -28,7 +28,7 @@ script:
   - sudo usermod -aG sonarqube $(whoami)
   - sudo chown $(whoami):sonarqube -R $HOME_DIR/sonarqube-10.6.0.92116
   - export PATH=$PATH:$HOME_DIR/sonarqube-10.6.0.92116/bin/linux-x86-64
-  - sonar.sh start && sleep 120s
+  - sonar.sh start
   # Install sonar-scanner-cli
   - cd $HOME_DIR
   - wget -q https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
